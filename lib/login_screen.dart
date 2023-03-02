@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multi_role_app/home_screen.dart';
+import 'package:multi_role_app/student_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('SignUp'),
         automaticallyImplyLeading: false,
         centerTitle: true,
       ),
@@ -62,11 +62,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 sp.setString('email', emailController.text.toString());
                 sp.setString('age', ageController.text.toString());
+                sp.setString('userType', 'student');
                 sp.setBool('isLogin', true);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const StudentScreen(),
                   ),
                 );
               },
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
                 color: Colors.amber,
                 child: const Center(
-                  child: Text('Login'),
+                  child: Text('SignUp'),
                 ),
               ),
             ),
