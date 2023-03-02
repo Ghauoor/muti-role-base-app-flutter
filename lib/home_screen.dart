@@ -10,6 +10,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String email = '', age = '';
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    email = sp.getString('email') ?? '';
+    age = sp.getString('age') ?? '';
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +37,29 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'HOME SCREEN',
-              style: TextStyle(fontSize: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Email'),
+                Text(
+                  email.toString(),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('age'),
+                Text(
+                  age.toString(),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 40.0,
             ),
             InkWell(
               onTap: () async {
